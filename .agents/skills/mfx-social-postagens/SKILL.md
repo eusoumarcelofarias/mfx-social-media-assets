@@ -9,6 +9,12 @@ description: Produzir, organizar, aprovar, agendar e acompanhar publicações so
 
 ## 1. Serviços, links e IDs permanentes
 
+> **ATUALIZAÇÃO 22/11/2026 — conta canônica: `eusoumarcelofarias@gmail.com`.** Vale sobre os IDs antigos abaixo.
+> - Planilha: [MFX Social — Calendário de Publicações](https://docs.google.com/spreadsheets/d/1AGUCHhBNsZHiXDiH114rTB05TgT0ec-1zku-yq0xSr0/edit), ID `1AGUCHhBNsZHiXDiH114rTB05TgT0ec-1zku-yq0xSr0` (a planilha antiga da conta ideias não é mais lida).
+> - Pasta: `Meu Drive/MFX Social` (ID `1JfxHulR27DCvulnE3uNBYN0qMxDFdwbF`), sincronizada no Mac em `~/Library/CloudStorage/GoogleDrive-eusoumarcelofarias@gmail.com/Meu Drive/MFX Social` (subpastas `pesquisa`, `remessas`, `referencias`).
+> - Credenciais n8n: `Google Sheets eusoumarcelofarias` (sincronizador lê a aba Calendario) e `Google Drive eusoumarcelofarias` (publicador Facebook baixa as imagens).
+> - Pesquisa semanal: workflow `Yy82NDfptZ6PpZap` (Apify + IA, segunda 6h) grava temas nota ≥ 7 na Data Table `MFX_social_pesquisa` (`hIiTsYQyWhxCcFEu`).
+
 **Google Drive:** conta `ideiasemmovimentodigital@gmail.com`
 - Raiz operacional, PRIVADA: [MFX Solucoes - Publicacoes](https://drive.google.com/drive/folders/1EXesdckyVM-_UX25jFl8cvWh_Q319CUq), ID `1EXesdckyVM-_UX25jFl8cvWh_Q319CUq`.
 - Mídias finais, PÚBLICA somente leitura com link: [00 - MIDIAS PUBLICAS MFX](https://drive.google.com/drive/folders/1PnqL8Y7OmUPdiSwEBsTGKpkGJmcW-HQD), ID `1PnqL8Y7OmUPdiSwEBsTGKpkGJmcW-HQD`.
