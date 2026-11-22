@@ -1,4 +1,4 @@
-﻿# MFX Soluções — Instruções permanentes para agentes
+# MFX Soluções — Instruções permanentes para agentes
 
 Este repositório armazena somente **mídias públicas** e documentação operacional da publicação social da MFX.
 

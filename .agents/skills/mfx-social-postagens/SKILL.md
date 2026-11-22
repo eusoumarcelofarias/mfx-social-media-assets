@@ -1,4 +1,4 @@
-﻿---
+---
 name: mfx-social-postagens
 description: Produzir, organizar, aprovar, agendar e acompanhar publicações sociais ADS Scale, OfertaRadar, AppLife, Quiz e MFX Soluções usando Google Drive, Google Sheets e n8n, sem exigir JSON manual.
 ---
