@@ -8,5 +8,7 @@ Use o Google Sheets para calendário editorial, Drive para artes originais, a Da
 
 Nunca salve tokens ou senhas no repositório. Apenas mídia final aprovada pode ser publicada na Internet.
 
-A rotina automática existente publica **somente Facebook MFX**. Instagram pessoal de teste não deve ser ligado a agendamento sem autorização explícita. Não modifique outros apps, serviços ou credenciais AdScale.
+A rotina automática ativa publica **somente Facebook MFX**. O Instagram oficial `@mfxsolucoesbr` tem publicador próprio (`6YCyQKpcz3QsEPqr`), validado com carrossel real, mas **inativo até autorização explícita do proprietário**. O Instagram pessoal (`@eusoumarcelofarias`) é legado: nunca usar. Não modifique outros apps, serviços ou credenciais AdScale.
+
+Qualidade: todo conteúdo segue `docs/estrategia-de-conteudo.md` e é renderizado com `tools/render-carousel.mjs`. Posts nascem como `rascunho`.
 

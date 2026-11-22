@@ -1,0 +1,10 @@
+{
+  "produto": "OfertaRadar",
+  "slides": [
+    { "tipo": "capa", "titulo": "Como saber se uma oferta está **escalando**", "subtitulo": "3 sinais que mostram onde o mercado está investindo." },
+    { "tipo": "ponto", "numero": "01", "titulo": "Anúncios **ativos** crescendo", "texto": "Quando o número de anúncios ativos sobe dia após dia, o anunciante está colocando mais verba." },
+    { "tipo": "ponto", "numero": "02", "titulo": "O mesmo criativo **repetido**", "texto": "Muitas cópias do mesmo anúncio indicam que ele está performando." },
+    { "tipo": "ponto", "numero": "03", "titulo": "Presença **constante** no tempo", "texto": "Ofertas que seguem no ar por semanas costumam estar dando retorno." },
+    { "tipo": "cta", "titulo": "Acompanhe isso **todo dia**", "texto": "O OfertaRadar monitora a contagem diária de anúncios das ofertas que você guarda.", "botao": "Conheça o OfertaRadar" }
+  ]
+}

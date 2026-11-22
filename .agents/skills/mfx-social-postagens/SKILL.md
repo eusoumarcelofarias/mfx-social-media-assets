@@ -25,15 +25,26 @@ description: Produzir, organizar, aprovar, agendar e acompanhar publicações so
 - Editores existentes: conta Drive Ideias em Movimento e `eusoumarcelofarias@gmail.com`.
 - Cada linha representa **uma publicação para UMA rede**; para Facebook + Instagram, criar **duas linhas e IDs editoriais diferentes**.
 
-**n8n — [Sincronizar Sheets para fila Facebook](https://workflows.mfxsolucoes.com.br/workflow/qFeuWphPSq0mWI49)**
-- Workflow `qFeuWphPSq0mWI49`; importa posts aprovados do Calendario. Usa Drive OAuth, exporta a aba em CSV, valida, evita duplicatas por `id_editorial` e insere na Data Table. Nunca importa Instagram.
+**n8n — [Sincronizar Sheets para a fila](https://workflows.mfxsolucoes.com.br/workflow/qFeuWphPSq0mWI49)**
+- Workflow `qFeuWphPSq0mWI49`; importa posts aprovados do Calendario (Facebook **e Instagram oficial**). Usa Drive OAuth, exporta a aba em CSV, valida, evita duplicatas por `id_editorial` e insere na Data Table. Instagram: somente `carrossel` com 2–10 URLs JPEG HTTPS em `urls_jpeg_publicas`. Código versionado em `n8n/sincronizador-validar.js`.
+- **[Publicador Instagram OFICIAL @mfxsolucoesbr](https://workflows.mfxsolucoes.com.br/workflow/6YCyQKpcz3QsEPqr)**, ID `6YCyQKpcz3QsEPqr`. Consome `plataforma=instagram`, `status=pronto`, `agendado_em` vencido. Valida a conta por `GET /me` (bloqueia se não for `mfxsolucoesbr`). Credencial `MFX Instagram OFICIAL - mfxsolucoesbr - 22nov2026`. Teste real: exec `1602430`. **Fica INATIVO até o proprietário autorizar a ativação.**
+- Escrita no Sheets pelos agentes: usar o conector Google Sheets (`get_values`, `append_values`, `update_values`); testado em 22/11/2026. Nunca alterar linhas existentes sem pedido.
 - Data Table técnica `MFX_social_publicacoes`, ID `9yb4fZLqowstYbDH`, projeto `XCKVC1HkVLl6hhNI`.
 - [Publicador Facebook MFX](https://workflows.mfxsolucoes.com.br/workflow/Nahkx5DiWfRQyplx), ID `Nahkx5DiWfRQyplx`. Já validado em produção para imagem e múltiplas fotos; consulta Data Table a cada 15 minutos.
-- [Publicador Instagram de teste pessoal](https://workflows.mfxsolucoes.com.br/workflow/TfXMvgnogFKD96za), ID `TfXMvgnogFKD96za`. **Manual/desativado**, não ativar recorrência sem pedido.
+- [Publicador Instagram pessoal LEGADO](https://workflows.mfxsolucoes.com.br/workflow/TfXMvgnogFKD96za), ID `TfXMvgnogFKD96za` (`@eusoumarcelofarias`). **Desativado, não usar** para conteúdo MFX nem reutilizar sua credencial.
+- Verificador de token Instagram oficial (sem publicar): `qoUhoi9OOLwVamA3`.
 - Credencial n8n Drive: **Google Drive Ideias em Movimento**, ID `bIy6hjPRxvhf7Nv2`. Meta Facebook e Instagram já têm credenciais distintas — **não exibir ou copiar tokens**.
 - O Facebook MFX tem token que precisa ser revisado/renovado antes de **21/01/2027**.
 
 **URLs JPEG diretas para Instagram:** Google Drive compartilhado é apenas arquivo/origem, **não** hospedagem direta garantida. Usar provedor público de imagens JPEG HTTPS, já testado pelo projeto: [mfx-social-media-assets](https://github.com/eusoumarcelofarias/mfx-social-media-assets) / URL `https://raw.githubusercontent.com/eusoumarcelofarias/mfx-social-media-assets/main/<caminho>/01.jpg`. Nunca usar Drive `/file/d/ID/view` como `image_url` do Instagram. Confirmar HTTP 200, Content-Type image/jpeg.
+
+## 1.1 Qualidade de conteúdo e template (obrigatório)
+
+Antes de escrever qualquer post, leia [`docs/estrategia-de-conteudo.md`](../../../docs/estrategia-de-conteudo.md): pilares por sistema (AdScale Pro, OfertaRadar, AppLift, MFX Quiz), checklist de qualidade e anatomia da legenda. Todo post precisa **ensinar algo útil** e se ligar a uma funcionalidade confirmada em https://mfxsolucoes.com.br/. Sem promessa de resultado, sem número inventado, sem copiar terceiros.
+
+Artes: use o template `tools/render-carousel.mjs` (spec JSON em `templates/exemplo-carrossel.json`) para gerar JPEG 1080×1350 padronizados. Não gere arte avulsa fora da identidade do template.
+
+Ferramentas por agente: Claude Code/Codex (executam: render, Drive, Sheets, n8n), ChatGPT (ideias e rascunhos; ver `docs/chatgpt-instrucoes.md`).
 
 ## 2. Geração de posts sob demanda
 
@@ -73,7 +84,7 @@ O sincronizador exporta CSV da primeira aba por Drive API, usando a credencial O
 - Uma linha aprovada com data fictícia 2099 foi importada uma única vez (n8n exec. `1601612`), mas depois cancelada em Sheet e Data Table (id=4).
 - Reexecução `1601613` gerou 0 duplicatas.
 
-O importador só considera linhas com `aprovacao=aprovado`, `status_automacao=pendente`, `rede=facebook`, data ISO correta, legenda e IDs de fotos adequados. Passa `status=pronto` para Data Table. O publicador MFX Facebook executa quando `agendado_em` vencer. O **Instagram pessoal nunca entra no sincronizador automático**.
+O importador só considera linhas com `aprovacao=aprovado`, `status_automacao=pendente`, `rede` = `facebook` ou `instagram`, data ISO correta, legenda e mídias adequadas (Facebook: IDs do Drive; Instagram: carrossel com URLs JPEG HTTPS). Passa `status=pronto` para a Data Table. O publicador Facebook executa quando `agendado_em` vencer. O publicador Instagram oficial só roda se o proprietário o ativar (hoje inativo). O Instagram **pessoal** nunca entra no fluxo.
 
 A API Google Sheets REST do projeto Google Cloud associado ao Drive OAuth retornou HTTP 403 por estar desativada, por isso a leitura funcional é por **exportação CSV pela API do Drive**. **Ainda não há escrita bidirecional status/link do n8n para Sheets**, apenas leitura/ingestão. Para acompanhar resultados, ler a Data Table do n8n.
 
